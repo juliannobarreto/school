@@ -1,6 +1,10 @@
 package studentjava.classes;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import jawa.constantes.StatusStudent;
 
 public class Student {
 	
@@ -14,11 +18,16 @@ public class Student {
 	private String enrollmentDate;
 	private String schoolName;
 	private String seriesEnrolled;
+	/* Lista de disciplinas criadas */
+	private List<Discipline> disciplines = new ArrayList<Discipline>();
 	
-	private double note1; 
-	private double note2;
-	private double note3;
-	private double note4;
+	public void setDisciplines(List<Discipline> disciplines) {
+		this.disciplines = disciplines;
+	}
+	
+	public List<Discipline> getDisciplines() {
+		return disciplines;
+	}
 	
 	public Student() {
 		
@@ -116,49 +125,35 @@ public class Student {
 		this.seriesEnrolled = seriesEnrolled;
 	}
 
-	public double getNote1() {
-		return note1;
-	}
 
-	public void setNote1(double note1) {
-		this.note1 = note1;
-	}
-
-	public double getNote2() {
-		return note2;
-	}
-
-	public void setNote2(double note2) {
-		this.note2 = note2;
-	}
-
-	public double getNote3() {
-		return note3;
-	}
-
-	public void setNote3(double note3) {
-		this.note3 = note3;
-	}
-
-	public double getNote4() {
-		return note4;
-	}
-
-	public void setNote4(double note4) {
-		this.note4 = note4;
-	}
-	
 	public double getAverageGrade() {
-		return (note1 + note2 + note3 + note4)/ 4;
+		
+		double somaNote = 0.0;
+		
+		for (Discipline subject : disciplines) {
+			somaNote =+ subject.getNote() ;			
+		}
+		
+		return somaNote / disciplines.size();
 	}
 
-	public boolean getApprovedStudent() {
+	public String getApprovedStudent() {
 		double media = this.getAverageGrade();
-		if (media >= 70) {
-			return true;
+		if (media >= 50) {
+			if ( media >= 70) {
+				return StatusStudent.APPROVED;
+			}else {
+				return StatusStudent.RECOVERY;
+			}
 		}else {
-			return false;
+				return StatusStudent.DISAPPROVED;
 		}
+		
+	}
+	/* Equals e Hashcode (Diferenciar e comparar objetos) */
+	@Override
+	public int hashCode() {
+		return Objects.hash(name, numberCpf);
 	}
 	/* Endereço do objeto na memória do java */
 	@Override
@@ -166,15 +161,8 @@ public class Student {
 		return "Student [name=" + name + ", age=" + age + ", birthDate=" + birthDate + ", generalRecord="
 				+ generalRecord + ", numberCpf=" + numberCpf + ", motherName=" + motherName + ", fatherName="
 				+ fatherName + ", enrollmentDate=" + enrollmentDate + ", schoolName=" + schoolName + ", seriesEnrolled="
-				+ seriesEnrolled + ", note1=" + note1 + ", note2=" + note2 + ", note3=" + note3 + ", note4=" + note4
-				+ "]";
+				+ seriesEnrolled + "]";
 	}
-	/* Equals e Hashcode (Diferenciar e comparar objetos) */
-	@Override
-	public int hashCode() {
-		return Objects.hash(name, numberCpf);
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
