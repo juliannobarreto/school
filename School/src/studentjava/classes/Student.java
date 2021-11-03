@@ -6,15 +6,8 @@ import java.util.Objects;
 
 import jawa.constantes.StatusStudent;
 
-public class Student {
+public class Student extends People {
 	
-	private String name;
-	private int age;
-	private String birthDate;
-	private String generalRecord;
-	private String numberCpf;
-	private String motherName;
-	private String fatherName;
 	private String enrollmentDate;
 	private String schoolName;
 	private String seriesEnrolled;
@@ -34,7 +27,7 @@ public class Student {
 	}
 	
 	public Student(String namePattern) {
-		name = namePattern;
+		super.name = namePattern;
 		
 	}
 	
@@ -173,6 +166,12 @@ public class Student {
 			return false;
 		Student other = (Student) obj;
 		return Objects.equals(name, other.name) && Objects.equals(numberCpf, other.numberCpf);
+	}
+
+	@Override
+	public double salario() {
+		// TODO Auto-generated method stub
+		return 1500.00;
 	}
 	
 	
