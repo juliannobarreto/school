@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import jawa.constantes.StatusStudent;
 import studentjava.classes.Discipline;
+import studentjava.classes.Secretary;
 import studentjava.classes.Student;
 
 public class PrimeiraClasseJava {
@@ -17,9 +18,13 @@ public class PrimeiraClasseJava {
 		String login = JOptionPane.showInputDialog("Informe o login");
 		String passoard = JOptionPane.showInputDialog("Informe o passoard");
 		
-		if (login.equalsIgnoreCase("adimin") && 
-				passoard.equalsIgnoreCase("adimin")) {
-			
+		Secretary secretary = new Secretary();
+		secretary.setLogin(login);
+		secretary.setPassoard(passoard);
+		
+	
+		if (secretary.autenticar()) {
+					
 		List<Student> students = new ArrayList<Student>();
 		
 		HashMap<String, List<Student>> maps = new HashMap<String, List<Student>>();
@@ -112,6 +117,8 @@ public class PrimeiraClasseJava {
 			System.out.println("Result: " + student.getApprovedStudent() + "with the average: " + student.getAverageGrade());
 		}
 		
+	}else {
+		JOptionPane.showConfirmDialog(null, "Access not allowed");
 	}
 		
 	}
