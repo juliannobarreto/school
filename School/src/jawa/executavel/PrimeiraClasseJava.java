@@ -1,5 +1,6 @@
 package jawa.executavel;
 
+import java.interfaces.PermitirAcess;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,12 +19,9 @@ public class PrimeiraClasseJava {
 		String login = JOptionPane.showInputDialog("Informe o login");
 		String passoard = JOptionPane.showInputDialog("Informe o passoard");
 		
-		Secretary secretary = new Secretary();
-		secretary.setLogin(login);
-		secretary.setPassoard(passoard);
+		PermitirAcess secretary = new Secretary();
 		
-	
-		if (secretary.autenticar()) {
+		if (secretary.autenticar(login, passoard)) {
 					
 		List<Student> students = new ArrayList<Student>();
 		

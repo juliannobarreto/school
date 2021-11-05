@@ -8,22 +8,7 @@ public class Secretary extends People implements PermitirAcess {
 	private String levelPosition;
 	private String experience;
 	
-	private String login;
-	
-	private String passoard;
-	
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	public String getPassoard() {
-		return passoard;
-	}
-	public void setPassoard(String senha) {
-		this.passoard = senha;
-	}
+
 	public String getRecord() {
 		return record;
 	}
@@ -50,12 +35,17 @@ public class Secretary extends People implements PermitirAcess {
 	public double salario() {
 		// TODO Auto-generated method stub
 		return 0;
+
 	}
-	/* Esse é o método do contrato de autenticação */
+	@Override
+	public boolean autenticar(String login, String passoard) {
+		
+		return login.equals("admin") && passoard.equals("admin");
+	}
 	@Override
 	public boolean autenticar() {
-		
-		return login.equals("admin") && passoard.equals("admin"); 
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	
